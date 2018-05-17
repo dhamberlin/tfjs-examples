@@ -16,6 +16,7 @@
  */
 import * as tf from '@tensorflow/tfjs';
 
+const PASS_STATUS = ['ok', 'fail', 'fail', 'fail'];
 const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
 
@@ -47,7 +48,6 @@ const no = document.getElementById('no');
 
 export function predictClass(classId) {
   document.body.setAttribute('data-active', CONTROLS[classId]);
-
   if (classId === 0) {
     yes.classList.add('show');
     yes.classList.remove('ninja');
@@ -59,6 +59,7 @@ export function predictClass(classId) {
     yes.classList.add('ninja');
     yes.classList.remove('show');
   }
+  document.body.setAttribute('data-status', PASS_STATUS[classId]);
 }
 
 export function isPredicting() {

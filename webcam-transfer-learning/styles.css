@@ -300,6 +300,12 @@ header b {
 [data-active="right"] .panel-cell-right .thumb-box-outer {
   box-shadow: 0 0 4px 4px #ffaa00;
 }
+[data-status="ok"] .webcam-box-outer {
+  box-shadow: 0 0 4px 4px #00ff00;
+}
+[data-status="fail"] .webcam-box-outer {
+  box-shadow: 0 0 4px 4px #ff0000;
+}
 
 .thumb-box-inner {
   border: 1px solid #585858;
