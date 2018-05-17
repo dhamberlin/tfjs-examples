@@ -303,6 +303,8 @@ header b {
 [data-status="ok"] .webcam-box-outer {
   box-shadow: 0 0 4px 4px #00ff00;
 }
+[data-status="yes1"] .webcam-box-outer,
+[data-status="yes2"] .webcam-box-outer,
 [data-status="fail"] .webcam-box-outer {
   box-shadow: 0 0 4px 4px #ff0000;
 }
