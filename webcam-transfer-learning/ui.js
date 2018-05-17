@@ -49,8 +49,22 @@ const statusElement = document.getElementById('status');
 // const no = document.getElementById('no');
 
 var last_status = 'fail';
+var timeout_id = null;
+set_logout_timeout();
+
+function set_logout_timeout() {
+  timeout_id = setTimeout(() => {
+    logout();
+  }, 10000);
+}
+function reset_timeout() {
+  clearTimeout(timeout_id);
+  set_logout_timeout();
+}
+
 export function logout () {
   last_status = 'fail';
+  console.log('logged out');
 }
 
 export function predictClass(classId) {
@@ -60,7 +74,13 @@ export function predictClass(classId) {
   if ((last_status === 'fail' && current_status === 'yes1') ||
       (last_status === 'yes1' && current_status === 'yes2') ||
       (last_status === 'yes2' && current_status === 'ok')) {
+    if(current_status === 'yes1') {
+      reset_timeout();
+    }
     last_status = current_status;
+    document.body.setAttribute('data-status', current_status);
+  } else if (last_status === 'fail') {
+    current_status = last_status;
     document.body.setAttribute('data-status', current_status);
   }
   // if (classId === 0) {
