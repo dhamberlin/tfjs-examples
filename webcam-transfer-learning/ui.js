@@ -125,7 +125,7 @@ const numLabels = ['first', 'second', 'third']
 
 let currentSign = 0
 let currentTotal = 0
-const TARGET_COUNT = 10
+const TARGET_COUNT = 200
 async function handleNextSign() {
   captureButton.disabled = true
   const progressBar = document.createElement('div')
