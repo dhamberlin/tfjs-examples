@@ -356,3 +356,27 @@ header b {
   text-align: center;
   padding: 1.5rem 0.5rem;
 }
+
+.ninja {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+#yes {
+  color: green;
+}
+
+#no {
+  color: red;
+}
+
+.auth-display {
+  width: 75%;
+  margin: 0 auto;
+  font-size: 4rem;
+  background-color: white;
+  text-align: center;
+}

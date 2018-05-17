@@ -26,6 +26,8 @@ export function init() {
 
 const trainStatusElement = document.getElementById('train-status');
 
+const loggedInElement = document.getElementById('logged-in');
+
 // Set hyper params from UI values.
 const learningRateElement = document.getElementById('learningRate');
 export const getLearningRate = () => +learningRateElement.value;
@@ -40,15 +42,36 @@ const denseUnitsElement = document.getElementById('dense-units');
 export const getDenseUnits = () => +denseUnitsElement.value;
 const statusElement = document.getElementById('status');
 
+const yes = document.getElementById('yes');
+const no = document.getElementById('no');
+
 export function predictClass(classId) {
   document.body.setAttribute('data-active', CONTROLS[classId]);
+
+  if (classId === 0) {
+    yes.classList.add('show');
+    yes.classList.remove('ninja');
+    no.classList.add('ninja');
+    no.classList.remove('show');
+  } else {
+    no.classList.add('show');
+    no.classList.remove('ninja');
+    yes.classList.add('ninja');
+    yes.classList.remove('show');
+  }
 }
 
 export function isPredicting() {
+  console.log("PREDICTING!");
   statusElement.style.visibility = 'visible';
+  loggedInElement.classList.add('show');
+  loggedInElement.classList.remove('ninja');
 }
 export function donePredicting() {
+  console.log("NO LONGER PREDICTING!");
   statusElement.style.visibility = 'hidden';
+  loggedInElement.classList.remove('show');
+  loggedInElement.classList.add('ninja');
 }
 export function trainStatus(status) {
   trainStatusElement.innerText = status;
