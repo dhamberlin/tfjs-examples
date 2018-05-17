@@ -147,7 +147,6 @@ async function predict() {
     });
 
     const classId = (await predictedClass.data())[0];
-    console.log(classId);
     predictedClass.dispose();
 
     ui.predictClass(classId);
@@ -166,6 +165,9 @@ document.getElementById('train').addEventListener('click', async () => {
 document.getElementById('predict').addEventListener('click', () => {
   isPredicting = true;
   predict();
+});
+document.getElementById('logout').addEventListener('click', () => {
+  ui.logout();
 });
 
 async function init() {

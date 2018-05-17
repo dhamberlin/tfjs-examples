@@ -31,7 +31,7 @@ button:focus {
 
 /** Page header. **/
 header {
-  background-color: #ef6c00;
+  background-color: blue;
   border-bottom: solid 1px rgba(0,0,0,0.4);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   color: rgba(255, 255, 255, 0.7);
@@ -117,10 +117,10 @@ header b {
   padding: 0 9px 0 22px;
   width: 353px;
 }
-.panel-row {
+/* .panel-row {
   display: flex;
   flex-direction: row;
-}
+} */
 .panel-cell {
   align-items: center;
   display: flex;
@@ -281,9 +281,9 @@ header b {
 .thumb-box {
   display: inline-block;
 }
-.panel-row-middle .thumb-box {
+/* .panel-row-middle .thumb-box {
   margin-top: 18px;
-}
+} */
 .thumb-box-outer {
   background: black;
   border: 1px solid #585858;
@@ -303,6 +303,8 @@ header b {
 [data-status="ok"] .webcam-box-outer {
   box-shadow: 0 0 4px 4px #00ff00;
 }
+[data-status="yes1"] .webcam-box-outer,
+[data-status="yes2"] .webcam-box-outer,
 [data-status="fail"] .webcam-box-outer {
   box-shadow: 0 0 4px 4px #ff0000;
 }
@@ -361,6 +363,7 @@ header b {
 .facecheck-button-label {
   text-align: center;
   padding: 1.5rem 0.5rem;
+  color: white;
 }
 
 .ninja {
@@ -409,11 +412,19 @@ button.capture-button:hover {
 
 button.capture-button:disabled {
   background-color: #000;
-  color: #333;
+  color: #ddd;
   cursor: wait;
+}
+
+button.capture-button.done:disabled {
+  cursor: pointer;
 }
 
 .progress-bar {
   height: 100%;
   background-color: blue;
+}
+
+.button-row {
+  display: flex;
 }

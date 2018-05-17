@@ -16,7 +16,7 @@
  */
 import * as tf from '@tensorflow/tfjs';
 
-const PASS_STATUS = ['ok', 'fail', 'fail', 'fail'];
+const PASS_STATUS = ['yes1', 'ok', 'fail', 'yes2'];
 const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
 
@@ -43,36 +43,50 @@ const denseUnitsElement = document.getElementById('dense-units');
 export const getDenseUnits = () => +denseUnitsElement.value;
 const statusElement = document.getElementById('status');
 
-const yes = document.getElementById('yes');
-const no = document.getElementById('no');
+// const yes1 = document.getElementById('yes1');
+// const yes2 = document.getElementById('yes2');
+// const ok = document.getElementById('ok');
+// const no = document.getElementById('no');
+
+var last_status = 'fail';
+export function logout () {
+  last_status = 'fail';
+}
 
 export function predictClass(classId) {
+  let current_status = PASS_STATUS[classId];
   document.body.setAttribute('data-active', CONTROLS[classId]);
-  if (classId === 0) {
-    yes.classList.add('show');
-    yes.classList.remove('ninja');
-    no.classList.add('ninja');
-    no.classList.remove('show');
-  } else {
-    no.classList.add('show');
-    no.classList.remove('ninja');
-    yes.classList.add('ninja');
-    yes.classList.remove('show');
+
+  if ((last_status === 'fail' && current_status === 'yes1') ||
+      (last_status === 'yes1' && current_status === 'yes2') ||
+      (last_status === 'yes2' && current_status === 'ok')) {
+    last_status = current_status;
+    document.body.setAttribute('data-status', current_status);
   }
-  document.body.setAttribute('data-status', PASS_STATUS[classId]);
+  // if (classId === 0) {
+  //   yes.classList.add('show');
+  //   yes.classList.remove('ninja');
+  //   no.classList.add('ninja');
+  //   no.classList.remove('show');
+  // } else {
+  //   no.classList.add('show');
+  //   no.classList.remove('ninja');
+  //   yes.classList.add('ninja');
+  //   yes.classList.remove('show');
+  // }
 }
 
 export function isPredicting() {
   console.log("PREDICTING!");
   statusElement.style.visibility = 'visible';
-  loggedInElement.classList.add('show');
-  loggedInElement.classList.remove('ninja');
+  // loggedInElement.classList.add('show');
+  // loggedInElement.classList.remove('ninja');
 }
 export function donePredicting() {
   console.log("NO LONGER PREDICTING!");
   statusElement.style.visibility = 'hidden';
-  loggedInElement.classList.remove('show');
-  loggedInElement.classList.add('ninja');
+  // loggedInElement.classList.remove('show');
+  // loggedInElement.classList.add('ninja');
 }
 export function trainStatus(status) {
   trainStatusElement.innerText = status;
@@ -111,7 +125,7 @@ const numLabels = ['first', 'second', 'third']
 
 let currentSign = 0
 let currentTotal = 0
-const TARGET_COUNT = 100
+const TARGET_COUNT = 10
 async function handleNextSign() {
   captureButton.disabled = true
   const progressBar = document.createElement('div')
@@ -129,9 +143,16 @@ async function handleNextSign() {
     progressBar.style.width = (currentTotal / TARGET_COUNT * 100) + '%'
     await tf.nextFrame()
   }
-  captureButton.disabled = false
   document.body.removeAttribute('data-active')
-  captureButton.innerHTML = `Capture ${numLabels[++currentSign]} sign`
+  currentSign++
+  if (currentSign > 3) {
+    captureButton.innerHTML = 'Signs recorded. Train and enjoy secure living.'
+  } else {
+    captureButton.innerHTML = currentSign < 3
+      ? `Capture ${numLabels[currentSign]} sign`
+      : 'Record some noise for science'
+    captureButton.disabled = false    
+  }
 }
 
 upButton.addEventListener('mousedown', () => handler(0));
