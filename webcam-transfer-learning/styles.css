@@ -117,10 +117,10 @@ header b {
   padding: 0 9px 0 22px;
   width: 353px;
 }
-.panel-row {
+/* .panel-row {
   display: flex;
   flex-direction: row;
-}
+} */
 .panel-cell {
   align-items: center;
   display: flex;
@@ -281,9 +281,9 @@ header b {
 .thumb-box {
   display: inline-block;
 }
-.panel-row-middle .thumb-box {
+/* .panel-row-middle .thumb-box {
   margin-top: 18px;
-}
+} */
 .thumb-box-outer {
   background: black;
   border: 1px solid #585858;
@@ -361,8 +361,8 @@ header b {
 }
 
 .facecheck-button-label {
-  text-align: center;
   padding: 1.5rem 0.5rem;
+  color: white;
 }
 
 .ninja {
@@ -387,4 +387,8 @@ header b {
   font-size: 4rem;
   background-color: white;
   text-align: center;
+}
+
+.button-row {
+  display: flex;
 }
