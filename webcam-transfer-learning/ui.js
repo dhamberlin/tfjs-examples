@@ -147,11 +147,12 @@ async function handleNextSign() {
   currentSign++
   if (currentSign > 3) {
     captureButton.innerHTML = 'Signs recorded. Train and enjoy secure living.'
+    captureButton.classList.add('done')
   } else {
     captureButton.innerHTML = currentSign < 3
       ? `Capture ${numLabels[currentSign]} sign`
       : 'Record some noise for science'
-    captureButton.disabled = false    
+    captureButton.disabled = false
   }
 }
 

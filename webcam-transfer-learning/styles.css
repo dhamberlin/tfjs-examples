@@ -417,7 +417,7 @@ button.capture-button:disabled {
 }
 
 button.capture-button.done:disabled {
-  cursor: pointer;
+  cursor: default;
 }
 
 .progress-bar {
