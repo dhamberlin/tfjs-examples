@@ -123,6 +123,7 @@ const upButton = document.getElementById('up');
 const downButton = document.getElementById('down');
 const leftButton = document.getElementById('left');
 const rightButton = document.getElementById('right');
+const captureButton = document.getElementById('capture-button')
 
 const thumbDisplayed = {};
 
@@ -140,6 +141,41 @@ async function handler(label) {
   document.body.removeAttribute('data-active');
 }
 
+const numLabels = ['first', 'second', 'third']
+
+let currentSign = 0
+let currentTotal = 0
+const TARGET_COUNT = 200
+async function handleNextSign() {
+  captureButton.disabled = true
+  const progressBar = document.createElement('div')
+  progressBar.style.width = 0
+  progressBar.classList = 'progress-bar'
+  captureButton.innerHTML = ''
+  captureButton.appendChild(progressBar)
+  currentTotal = 0
+  const button = document.getElementById('up')
+  const total = document.getElementById('up-total')
+  while (currentTotal <= TARGET_COUNT) {
+    addExampleHandler(currentSign)
+    document.body.setAttribute('data-active', CONTROLS[currentSign])
+    total.innerText = currentTotal++
+    progressBar.style.width = (currentTotal / TARGET_COUNT * 100) + '%'
+    await tf.nextFrame()
+  }
+  document.body.removeAttribute('data-active')
+  currentSign++
+  if (currentSign > 3) {
+    captureButton.innerHTML = 'Signs recorded. Train and enjoy secure living.'
+    captureButton.classList.add('done')
+  } else {
+    captureButton.innerHTML = currentSign < 3
+      ? `Capture ${numLabels[currentSign]} sign`
+      : 'Record some noise for science'
+    captureButton.disabled = false
+  }
+}
+
 upButton.addEventListener('mousedown', () => handler(0));
 upButton.addEventListener('mouseup', () => mouseDown = false);
 
@@ -151,6 +187,8 @@ leftButton.addEventListener('mouseup', () => mouseDown = false);
 
 rightButton.addEventListener('mousedown', () => handler(3));
 rightButton.addEventListener('mouseup', () => mouseDown = false);
+
+captureButton.addEventListener('click', handleNextSign)
 
 export function drawThumb(img, label) {
   if (thumbDisplayed[label] == null) {

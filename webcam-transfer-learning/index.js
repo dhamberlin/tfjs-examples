@@ -54,7 +54,7 @@ ui.setExampleHandler(label => {
     controllerDataset.addExample(mobilenet.predict(img), label);
 
     // Draw the preview thumbnail.
-    ui.drawThumb(img, label);
+    ui.drawThumb(img, 0);
   });
 });
 

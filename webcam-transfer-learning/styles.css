@@ -389,6 +389,41 @@ header b {
   text-align: center;
 }
 
+.capture-container {
+  width: 100%;
+  bottom: -50px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+button.capture-button {
+  width: 10rem;
+  height: 2rem;
+  background-color: #000;
+  color: #FFF;
+}
+
+button.capture-button:hover {
+  background-color: #FFF;
+  color: #000;
+}
+
+button.capture-button:disabled {
+  background-color: #000;
+  color: #ddd;
+  cursor: wait;
+}
+
+button.capture-button.done:disabled {
+  cursor: default;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: blue;
+}
+
 .button-row {
   display: flex;
 }
