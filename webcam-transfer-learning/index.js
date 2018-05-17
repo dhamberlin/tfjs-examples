@@ -147,6 +147,7 @@ async function predict() {
     });
 
     const classId = (await predictedClass.data())[0];
+    console.log(classId);
     predictedClass.dispose();
 
     ui.predictClass(classId);
