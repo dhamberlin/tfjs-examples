@@ -134,7 +134,7 @@ async function handler(label) {
   const total = document.getElementById(className + '-total');
   while (mouseDown) {
     addExampleHandler(label);
-    document.body.setAttribute('data-active', CONTROLS[label]);
+    document.body.setAttribute('data-active', 'up');
     total.innerText = totals[label]++;
     await tf.nextFrame();
   }
