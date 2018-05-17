@@ -16,7 +16,7 @@
  */
 import * as tf from '@tensorflow/tfjs';
 
-const PASS_STATUS = ['yes1', 'ok', 'fail', 'yes2'];
+const PASS_STATUS = ['fail', 'ok', 'yes1', 'yes2'];
 const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
 
