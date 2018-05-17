@@ -31,7 +31,7 @@ button:focus {
 
 /** Page header. **/
 header {
-  background-color: #ef6c00;
+  background-color: blue;
   border-bottom: solid 1px rgba(0,0,0,0.4);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   color: rgba(255, 255, 255, 0.7);
