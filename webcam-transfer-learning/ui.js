@@ -16,6 +16,7 @@
  */
 import * as tf from '@tensorflow/tfjs';
 
+const PASS_STATUS = ['ok', 'fail', 'fail', 'fail'];
 const CONTROLS = ['up', 'down', 'left', 'right'];
 const CONTROL_CODES = [38, 40, 37, 39];
 
@@ -42,6 +43,7 @@ const statusElement = document.getElementById('status');
 
 export function predictClass(classId) {
   document.body.setAttribute('data-active', CONTROLS[classId]);
+  document.body.setAttribute('data-status', PASS_STATUS[classId]);
 }
 
 export function isPredicting() {
